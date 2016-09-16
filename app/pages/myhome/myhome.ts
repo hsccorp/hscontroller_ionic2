@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController,AlertController} from 'ionic-angular';
 import {HomeService} from '../../service/homeservice';
 import {FloorData} from '../../DTO/FloorData';
 import {FloorView} from '../../components/floor-view';
@@ -15,7 +15,7 @@ export class MyHome {
 public floors:Array<FloorData>=[];
 public homeService:HomeService;
 
-constructor(private navCtrl: NavController,homeService: HomeService) {
+constructor(private navCtrl: NavController,homeService: HomeService,public alertCtrl: AlertController) {
   var self;
   self=this;
   this.homeService=homeService;
@@ -61,7 +61,9 @@ constructor(private navCtrl: NavController,homeService: HomeService) {
         });
     }
     
-    removeFloor(floorid:string) {
+    removeFloor(floor:any) {
+    console.log("remove floor is working");
+    let floorid=floor.id;    
        var self;
        self=this;
         this.homeService.removefloor(floorid).then(function (snapshot) {
@@ -77,7 +79,41 @@ constructor(private navCtrl: NavController,homeService: HomeService) {
     }
     
     
-   
+     popup()
+  {
+  console.log("Popup is working");
+  
+ let prompt = this.alertCtrl.create({
+      title: 'Add Floor' ,     
+      inputs: [
+        {
+          name: 'floor',
+          placeholder: 'Add Floor'
+          
+        }
+        
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+            
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+          console.log(data.floor);
+            this. addFloor(data.floor);
+        
+        
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
     
     
     

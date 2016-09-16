@@ -17,11 +17,22 @@
    
 <ion-list [virtualScroll]="floors">
 
-  <ion-item *virtualItem="let floor" (click)="itemTapped($event, floor)">      
+  <ion-item-sliding *virtualItem="let floor" (click)="itemTapped($event, floor)">   
+      <ion-item text-wrap >
       
     <floor-view [floordata]="floor"></floor-view>
-  </ion-item>
+      </ion-item>      
+  
+    <ion-item-options  >
+             
+            <button danger (click)="removeFloor(floor)" >
+                <ion-icon name="trash"></ion-icon>
+            </button>
+             
+        </ion-item-options>
+              </ion-item-sliding>
 
 </ion-list>
-    
+    <button block (click)="popup()" style="position:fixed;bottom:0px;width:100%;">Add Floor</button>
+   
 </ion-content>

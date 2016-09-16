@@ -3,7 +3,7 @@
     <button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Some Floor</ion-title>
+    <ion-title>Rooms</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -15,13 +15,14 @@
       </ion-item>
     </ion-list>-->
    
-<ion-list [virtualScroll]="rooms">
-
-  <ion-item *virtualItem="let room">      
+    
       
-    <room-view [roomdata]="room"></room-view>
-  </ion-item>
+    <room-view [roomdata]="rooms"></room-view>
+  
+    
+    
+   
 
-</ion-list>
+<button block (click)="popup()" style="position:fixed;bottom:0px;width:100%;">Add Room</button>
     
 </ion-content>
