@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Floors</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+   <!--  
+ <ion-list no-lines>
+      <ion-item *ngFor="let chat of floors" (click)="itemSelected(chat)">
+        <floor-view [floordata]="chat"></floor-view>
+      </ion-item>
+    </ion-list>-->
+   
+<ion-list [virtualScroll]="floors">
+
+  <ion-item *virtualItem="let floor" (click)="itemTapped($event, floor)">      
+      
+    <floor-view [floordata]="floor"></floor-view>
+  </ion-item>
+
+</ion-list>
+    
+</ion-content>
