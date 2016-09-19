@@ -76,6 +76,8 @@ constructor(private navCtrl: NavController,homeService: HomeService,public alert
             self.floors.push(new FloorData(id,floor[id].name));
           }          
         });
+        
+         
     }
     
     
