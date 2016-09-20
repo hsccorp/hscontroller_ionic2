@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{roomName}} Devices</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    
+    <ion-list [virtualScroll]="devices">
+
+  <ion-item *virtualItem="let device">
+      {{device.name}}
+        </ion-item>
+    </ion-list>
+ <button fab fab-bottom fab-right (click)="popup()"  calm style="position:fixed;bottom:0px;">
+  <ion-icon name="add"></ion-icon>
+</button>
+    
+</ion-content>

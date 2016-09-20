@@ -1,6 +1,6 @@
 import {Component,Input} from '@angular/core';
 import {IONIC_DIRECTIVES}   from 'ionic-angular';
-import {FloorData} from '../DTO/DeviceData';
+import {DeviceData} from '../DTO/DeviceData';
 
 
 @Component({

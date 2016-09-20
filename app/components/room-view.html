@@ -2,14 +2,12 @@
    <div>
     
              
-             <span *ngFor="let room of roomdata"
-
-
-               style="float: left;
-	width: 50%;">
+             <span style="float: left;width: 50%;" *ngFor="let room of roomdata">
            <a style="text-decoration:none;">
-               <ion-card style="height:80px;border:1px solid black;"><center style="line-height:80px;font-size:150%">
+               <ion-card style="height:80px;border:1px solid black;"><center style="line-height:80px;font-size:150%" (click)="itemTapped($event, room)">
                    {{ room.name }}</center></ion-card></a>
-                                                                                                                        </span>
-               </div>
+       
+                 
+       </span>                                                          										</div>
+               
 

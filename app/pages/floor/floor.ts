@@ -16,18 +16,27 @@ export class Floor {
 public rooms:Array<RoomData>=[];
 public floorService:FloorService;
 public selectedFloor:FloorData;
+public floorName:any;
+public floorId:any;
+
 
 constructor(private navCtrl: NavController,floorService: FloorService,navParams:NavParams,public alertCtrl: AlertController) {
+
   var self;
   self=this;
+ 
   this.floorService=floorService;
   this.selectedFloor=navParams.get('selected_floor');  
-  floorService.getRooms(this.selectedFloor.id).then(function (snapshot) {
+   this.floorName=this.selectedFloor.name;
+   this.floorId=this.selectedFloor.id;
+   console.log("floorid is "+this.floorId);
+   
+  floorService.getRooms(self.floorId).then(function (snapshot) {
          let room=snapshot.val();
          
           for (let id in room) {
             console.log("hkb"+id); 
-            self.rooms.push(new RoomData(id,room[id].name));
+            self.rooms.push(new RoomData(self.floorId,id,room[id].name));
           }
           
         });
@@ -47,7 +56,7 @@ constructor(private navCtrl: NavController,floorService: FloorService,navParams:
            self.rooms=[];
           for (let id in  room) {
             console.log(id); 
-            self.rooms.push(new RoomData(id,room[id].name));
+            self.rooms.push(new RoomData(floorid,id,room[id].name));
           }          
         });
     }
@@ -85,6 +94,7 @@ constructor(private navCtrl: NavController,floorService: FloorService,navParams:
     });
     prompt.present();
   }
+  
  
  
 }
