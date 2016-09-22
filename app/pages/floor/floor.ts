@@ -43,14 +43,30 @@ constructor(private navCtrl: NavController,floorService: FloorService,navParams:
         
       //this.addRoom(selectedFloor.id,"someroom"); 
       
-      this.platform.registerBackButtonAction(() => {
+     
+  
+  }
+  
+  ionViewWillEnter()
+  {
+    this.deRegisterBackButton();
+  }
+  
+  deRegisterBackButton()
+  {
+  this.platform.registerBackButtonAction(() => {
       
-                console.log("floor hardware back button is working ");
+                console.log("disabling room  hardware back button is working ");
       
-                this.goBack();
+              this.customBackButton();
 			
 		});
+  }
   
+  
+  customBackButton()
+  {
+  console.log("disbaled room hardware back button ");
   }
   
   
@@ -107,6 +123,15 @@ constructor(private navCtrl: NavController,floorService: FloorService,navParams:
   {
   this.navCtrl.pop({animate: true, direction: 'back', animation: "ios-transition,duration:750"});
   }
- 
+ ionViewDidEnter()
+ {
+ this.platform.registerBackButtonAction(() => {
+      
+                console.log("floor hardware back button is working ");
+      
+                this.goBack();
+			
+		});
+ }
  
 }
