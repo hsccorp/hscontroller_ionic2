@@ -1,5 +1,10 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar hideBackButton>
+      <ion-buttons left (click)="goBack()">
+      <button>
+        <ion-icon name="ios-arrow-back-outline"></ion-icon>
+      </button>
+    </ion-buttons>
     <button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -12,7 +17,7 @@
     <ion-list [virtualScroll]="devices">
 
   <ion-item *virtualItem="let device">
-      {{device.name}}
+      <device-view [devicedata]="device"></device-view>
         </ion-item>
     </ion-list>
  <button fab fab-bottom fab-right (click)="popup()"  calm style="position:fixed;bottom:0px;">

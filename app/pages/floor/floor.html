@@ -1,5 +1,10 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar hideBackButton>
+      <ion-buttons left (click)="goBack()">
+      <button>
+        <ion-icon name="ios-arrow-back-outline"></ion-icon>
+      </button>
+    </ion-buttons>
     <button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>

@@ -39,7 +39,7 @@ constructor(private navCtrl: NavController,homeService: HomeService,public alert
     
         this.navCtrl.push(Floor, {
           selected_floor: floordata
-        });
+        },{animate: true, direction: 'forward', animation: "ios-transition,duration:750"});
         
         
         

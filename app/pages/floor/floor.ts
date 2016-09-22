@@ -95,6 +95,10 @@ constructor(private navCtrl: NavController,floorService: FloorService,navParams:
     prompt.present();
   }
   
+  goBack()
+  {
+  this.navCtrl.pop({animate: true, direction: 'back', animation: "ios-transition,duration:750"});
+  }
  
  
 }

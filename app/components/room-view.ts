@@ -26,7 +26,7 @@ constructor(private navCtrl: NavController){
        
         this.navCtrl.push(Room, {
           selected_room: room
-        });
+        },{animate: true, direction: 'forward', animation: "ios-transition,duration:750"});
         
        console.log("Click is working "+room.name); 
     }

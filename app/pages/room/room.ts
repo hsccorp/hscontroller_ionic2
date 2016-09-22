@@ -6,7 +6,8 @@ import {DeviceView } from '../../components/device-view';
 
 @Component({
   templateUrl: 'build/pages/room/room.html',
-  providers:[RoomService]
+  providers:[RoomService],
+  directives:[DeviceView]
 })
 
 export class Room {
@@ -94,7 +95,10 @@ console.log("Floor id is "+this.floorId);
         });
     }
     
-   
+    goBack()
+  {
+  this.navCtrl.pop({animate: true, direction: 'back', animation: "ios-transition,duration:750"});
+  }
 
 }
 
