@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController,NavParams,AlertController} from 'ionic-angular';
+import {NavController,NavParams,AlertController,Platform } from 'ionic-angular';
 import {FloorService} from '../../service/floorservice';
 import {RoomData} from '../../DTO/RoomData';
 import {FloorData} from '../../DTO/FloorData';
@@ -20,7 +20,7 @@ public floorName:any;
 public floorId:any;
 
 
-constructor(private navCtrl: NavController,floorService: FloorService,navParams:NavParams,public alertCtrl: AlertController) {
+constructor(private navCtrl: NavController,floorService: FloorService,navParams:NavParams,public alertCtrl: AlertController,private platform: Platform) {
 
   var self;
   self=this;
@@ -42,6 +42,14 @@ constructor(private navCtrl: NavController,floorService: FloorService,navParams:
         });
         
       //this.addRoom(selectedFloor.id,"someroom"); 
+      
+      this.platform.registerBackButtonAction(() => {
+      
+                console.log("floor hardware back button is working ");
+      
+                this.goBack();
+			
+		});
   
   }
   

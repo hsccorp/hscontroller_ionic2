@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController,NavParams,AlertController} from 'ionic-angular';
+import {NavController,NavParams,AlertController,Platform} from 'ionic-angular';
 import {RoomService} from '../../service/roomservice';
 import {DeviceData} from '../../DTO/DeviceData';
 import {DeviceView } from '../../components/device-view';
@@ -20,7 +20,7 @@ public roomService:RoomService;
 
 
 
-constructor(private navCtrl:NavController,navParams:NavParams,roomService:RoomService,public alertCtrl: AlertController) {
+constructor(private navCtrl:NavController,navParams:NavParams,roomService:RoomService,public alertCtrl: AlertController,private platform: Platform) {
 
 var self;
 self=this;
@@ -41,6 +41,14 @@ console.log("Floor id is "+this.floorId);
           }
           
         });
+        
+    this.platform.registerBackButtonAction(() => {
+      
+                console.log("room hardware back button is working");
+      
+                this.goBack();
+			
+		});
         
       
   
