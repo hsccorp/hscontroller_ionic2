@@ -43,5 +43,13 @@ addroom(floorid:string,roomname:string) {
       firebase.database().ref().update(updates);      
       return firebase.database().ref("floors/"+floorid+"/rooms/").once('value');
 }
+removeRoom(floorid:string,roomid:string) {
+
+        console.log("floor id is "+floorid);
+        console.log("room id is"+roomid);
+    
+      firebase.database().ref("/floors/"+floorid+"/rooms/").child(roomid).remove();
+      return firebase.database().ref("floors/"+floorid+"/rooms/").once('value');
+}
   
 }

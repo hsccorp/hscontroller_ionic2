@@ -4,6 +4,8 @@ import {FloorService} from '../../service/floorservice';
 import {RoomData} from '../../DTO/RoomData';
 import {FloorData} from '../../DTO/FloorData';
 import {RoomView} from '../../components/room-view';
+import {Room} from '../../pages/room/room';
+import { ActionSheetController } from 'ionic-angular';
 
 
 @Component({
@@ -20,7 +22,7 @@ public floorName:any;
 public floorId:any;
 
 
-constructor(private navCtrl: NavController,floorService: FloorService,navParams:NavParams,public alertCtrl: AlertController,private platform: Platform) {
+constructor(private navCtrl: NavController,floorService: FloorService,navParams:NavParams,public alertCtrl: AlertController,private platform: Platform,public actionSheetCtrl: ActionSheetController) {
 
   var self;
   self=this;
@@ -46,6 +48,8 @@ constructor(private navCtrl: NavController,floorService: FloorService,navParams:
      
   
   }
+  
+ 
   
   ionViewWillEnter()
   {
@@ -133,5 +137,57 @@ constructor(private navCtrl: NavController,floorService: FloorService,navParams:
 			
 		});
  }
+ 
+  itemTapped(event, room) {
+    
+       
+        this.navCtrl.push(Room, {
+          selected_room: room
+        },{animate: true, direction: 'forward', animation: "ios-transition,duration:750"});
+        
+       console.log("Click is working "+room.name); 
+    }
+    itemTap(event,room)
+    {
+    console.log("Double tap is working");
+        let actionSheet = this.actionSheetCtrl.create({
+      title: 'Delete the room',
+      buttons: [
+        {
+          text: 'Delete',
+          role: 'destructive',
+          handler: () => {
+            console.log('Destructive clicked');
+            this.removeRoom(room);
+          }
+        }
+      ]
+    });
+    actionSheet.present();
+    }
+    
+    removeRoom(room:any)
+    {
+    console.log("Delete Room Working");
+    console.log("Deleted room is "+room.name)
+    let roomId=room.id;
+    let floorid=room.floorId;
+    console.log("deleted room belongs to floor id"+floorid);
+     var self;
+       self=this;
+        this.floorService.removeRoom(floorid,roomId).then(function (snapshot) {
+         let room=snapshot.val();
+          console.log(room);
+           console.log("here");
+           self.rooms=[];
+          for (let id in  room) {
+            console.log(id); 
+            self.rooms.push(new RoomData(floorid,id,room[id].name));
+          }     
+          
+        });
+        
+       
+    }
  
 }

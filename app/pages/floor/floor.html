@@ -20,11 +20,11 @@
       </ion-item>
     </ion-list>-->
    
-    
+    <span *ngFor="let room of rooms" >
       
-    <room-view [roomdata]="rooms"></room-view>
+    <room-view [roomdata]="room" (click)="itemTapped($event, room)" (press)="itemTap($event,room)"></room-view>
   
-    
+    </span>
     
    
 
